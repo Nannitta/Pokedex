@@ -1,12 +1,28 @@
 <li>
-  <article>
-    <img src="{{ pokemon.sprites.front_default }}" alt="Imagen del pokemon" />
-    <h1>
-      <span>No. {{ pokemon.id }}</span>
-      <span
-        >{{ pokemon.name[0] | uppercase
-        }}{{ pokemon.name.slice(1).split("-")[0] }}</span
-      >
-    </h1>
-  </article>
+  <div>
+    <!-- añadirle clase orange-selected -->
+    <article class="normal">
+      <!-- añadir clase selected -->
+      <div class="container-number-sprite">
+        <img
+          src="{{ pokemon.sprites.front_default }}"
+          alt="Imagen del pokemon"
+          class="pokemon-sprite"
+        />
+        <h1>
+          <span>No. {{ pokemon.id }}</span>
+          <span class="pokemon-name"
+            >{{ pokemon.name[0] | uppercase
+            }}{{ pokemon.name.slice(1).split("-")[0] }}</span
+          >
+        </h1>
+      </div>
+      <img
+        src="../../../assets/images/pokeballIcon.svg"
+        alt="Icono de Pokeball"
+        class="pokeball-icon disabled"
+      />
+      <!-- quitar clase disabled -->
+    </article>
+  </div>
 </li>
