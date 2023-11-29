@@ -1,0 +1,10 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 93" width="1920" height="93">
+	<title>pokedex-svg-svg</title>
+	<defs>
+		<filter x="-50%" y="-50%" width="200%" height="200%" id="f1" ><feDropShadow dx="-2.4492935982947064e-16" dy="4" stdDeviation="1.6666666666666667" flood-color="#000000" flood-opacity=".2"/></filter>
+	</defs>
+	<style>
+		.s0 { filter: url(#f1);fill: #ef5a3f;stroke: #a33614;stroke-width: 4 } 
+	</style>
+	<path id="Layer" class="s0" d="m0-2h-2v2 80 2h2 154.8c7.1 0 14.1-1.8 20.3-5.2l36-19.8c5.6-3.1 11.9-4.7 18.3-4.7h1690.6 2v-2-50.3-2h-2z"/>
+</svg>

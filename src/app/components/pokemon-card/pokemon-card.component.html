@@ -1,0 +1,12 @@
+<li>
+  <article>
+    <img src="{{ pokemon.sprites.front_default }}" alt="Imagen del pokemon" />
+    <h1>
+      <span>No. {{ pokemon.id }}</span>
+      <span
+        >{{ pokemon.name[0] | uppercase
+        }}{{ pokemon.name.slice(1).split("-")[0] }}</span
+      >
+    </h1>
+  </article>
+</li>

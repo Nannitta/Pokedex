@@ -1,0 +1,30 @@
+$white: #F9F4F4
+$black: #333333
+$orange-pokedex: #EF5A3F
+$border-pokedex: #A33614
+$placeholder-text: #33333380
+$input-bg: #F9F4F480
+$shadow-top: 0px -4px 4px 0px rgba(0, 0, 0, 0.25)
+$shadow-bottom: 0px 4px 4px 0px rgba(0, 0, 0, 0.25)
+
+@font-face
+  font-family: 'Catamaran'
+  src: url('./assets/fonts/Catamaran-Bold.ttf')
+  font-display: swap
+
+*
+  margin: 0
+  padding: 0
+  box-sizing: border-box
+
+html
+  background: url('./assets/images/background.svg')
+  background-repeat: repeat
+  background-color: $white
+  color: $black
+
+  body
+    height: 100vh
+    display: grid
+    grid-template-rows: 90px 1fr 48px
+    grid-template-columns: 1fr
