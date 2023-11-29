@@ -2,15 +2,46 @@
 
 li
   list-style: none
-  article
-    display: flex
-    align-items: center
-    font-family: 'Catamaran'
-    gap: 1rem
-    img
-      width: 36px
-    h1
-      font-size: 1rem
-      letter-spacing: 0.05rem
-      display: flex
-      gap: 2rem
+
+.orange-selected
+  background: $bg-selected-orange
+  background-position: left
+  background-repeat: no-repeat
+
+.normal
+  display: flex
+  align-items: center
+  justify-content: space-between
+  font-family: 'Catamaran'
+
+.selected
+  background: $bg-selected-black
+  background-position: right
+  background-repeat: no-repeat
+  border-radius: 2.5rem
+  width: 19rem
+  color: $white
+  box-shadow: $shadow-bottom
+
+.container-number-sprite
+  display: flex
+  align-items: center
+
+.pokemon-sprite
+  width: 36px
+  margin-left: 1rem
+
+h1
+  font-size: 1rem
+  letter-spacing: 0.05rem
+  display: flex
+  gap: 2.3rem
+  .pokemon-name
+    margin-left: 1rem
+
+.pokeball-icon
+  width: 25px
+  height: 25px
+  margin-right: 0.5rem
+.disabled
+  display: none
