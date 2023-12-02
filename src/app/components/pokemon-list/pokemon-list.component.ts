@@ -1,4 +1,4 @@
-import { Component, QueryList, ViewChildren } from '@angular/core';
+import { Component, QueryList, ViewChildren, Output, EventEmitter, Input } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { PokemonInfo } from 'src/models/types/types';
 import { PokeApiService } from 'src/services/poke-api.service';
@@ -14,7 +14,8 @@ export class PokemonListComponent {
   pokemonInfo: Array<any>
   pokemonList: any
   subscription?: Subscription
-
+  @Input() position: any
+  
   constructor (private pokeApi: PokeApiService) {
     this.pokemonInfo = []
   }
@@ -31,12 +32,12 @@ export class PokemonListComponent {
               this.pokemonInfo.push(data)
               this.pokemonInfo.sort((a:PokemonInfo, b:PokemonInfo) => {
                 return a.id - b.id 
-              })             
+              })                           
             }
           )          
         })
       }
-    )      
+    )
   }
 }
 

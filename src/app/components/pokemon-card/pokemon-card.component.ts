@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { StylesService } from 'src/services/styles.service';
 
 @Component({
   selector: 'app-pokemon-card',
@@ -7,13 +8,47 @@ import { Component, Input } from '@angular/core';
 })
 export class PokemonCardComponent {
   @Input() pokemon: any;
+  @Input() position: any;
 
-  ngOnInit() {    
-      if (this.pokemon.id < 10) {
-        this.pokemon.id = '00' + this.pokemon.id
-      }
-      if (this.pokemon.id >= 10 && this.pokemon.id < 100) {
-        this.pokemon.id = '0' + this.pokemon.id
-      }
+  isSelected: boolean
+
+  constructor(private styleService: StylesService) {
+    this.isSelected = false
+  }
+
+  stylesApplied() {
+    return this.styleService.getStylesApply();
+  }
+
+  toggleImage() {
+    this.styleService.toggleStyles();
+    this.styleService.toggleImage();
+  }
+
+  ngOnChanges() {   
+    if (this.pokemon.id === this.position) {
+      this.isSelected = true
+    } else {
+      this.isSelected = false
+    }
+  }
+  
+  ngOnInit() {
+    if (this.pokemon.id < 10) {
+      this.pokemon.id = '00' + this.pokemon.id
+    }
+    if (this.pokemon.id >= 10 && this.pokemon.id < 100) {
+      this.pokemon.id = '0' + this.pokemon.id
+    }
+    
+    this.pokemon.id = this.pokemon.id.toString();
+    
+    if (this.pokemon.id === '001') {
+      this.isSelected = true
+    }      
+    }
+    
+  ngAfterViewInit() {
+   
   }
 }
