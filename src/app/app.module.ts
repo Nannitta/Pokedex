@@ -19,7 +19,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     HomePageComponent,
     SearchBarComponent,
     PokemonListComponent,
-    PokemonCardComponent
+    PokemonCardComponent,
   ],
   imports: [
     BrowserModule,

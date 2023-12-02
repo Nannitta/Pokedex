@@ -1,8 +1,6 @@
 <li>
-  <div>
-    <!-- añadirle clase orange-selected -->
-    <article class="normal">
-      <!-- añadir clase selected -->
+  <div [ngClass]="{ 'orange-selected': isSelected }">
+    <article class="normal" [ngClass]="{ selected: isSelected }">
       <div class="container-number-sprite">
         <img
           src="{{ pokemon.sprites.front_default }}"
@@ -18,11 +16,14 @@
         </h1>
       </div>
       <img
+        *ngIf="isSelected"
         src="../../../assets/images/pokeballIcon.svg"
         alt="Icono de Pokeball"
-        class="pokeball-icon disabled"
+        [ngClass]="{
+          'pokeball-icon': isSelected,
+          disabled: !isSelected
+        }"
       />
-      <!-- quitar clase disabled -->
     </article>
   </div>
 </li>
