@@ -9,14 +9,14 @@
       />
     </div>
     <div class="buttons-top-bottom">
-      <button (click)="toggleImage()">
+      <button (click)="toggleImage('up')">
         <img
           src="../../../assets/images/top-icon.svg"
           alt="Flecha arriba"
           class="icon-arrow"
         />
       </button>
-      <button (click)="toggleImage()">
+      <button (click)="toggleImage('down')">
         <img
           src="../../../assets/images/bottom-icon.svg"
           alt="Flecha abajo"
@@ -25,5 +25,8 @@
       </button>
     </div>
   </div>
-  <app-pokemon-list [position]="position"></app-pokemon-list>
+  <app-pokemon-list
+    [position]="position"
+    (pokemonLength)="getPokemonListLength($event)"
+  ></app-pokemon-list>
 </main>

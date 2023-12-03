@@ -26,11 +26,14 @@ export class PokemonCardComponent {
   }
 
   ngOnChanges() {   
-    if (this.pokemon.id === this.position) {
+    if (this.pokemon.id === this.position.toString()) {
       this.isSelected = true
     } else {
       this.isSelected = false
     }
+
+    console.log(this.pokemon.id, 'id');
+    console.log(this.position, 'position');
   }
   
   ngOnInit() {
@@ -42,13 +45,9 @@ export class PokemonCardComponent {
     }
     
     this.pokemon.id = this.pokemon.id.toString();
-    
+
     if (this.pokemon.id === '001') {
       this.isSelected = true
     }      
     }
-    
-  ngAfterViewInit() {
-   
-  }
 }
