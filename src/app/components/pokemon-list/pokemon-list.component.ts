@@ -15,6 +15,7 @@ export class PokemonListComponent {
   pokemonList: any
   subscription?: Subscription
   @Input() position: any
+  @Output() pokemonLength = new EventEmitter<number>();
   
   constructor (private pokeApi: PokeApiService) {
     this.pokemonInfo = []
@@ -24,15 +25,17 @@ export class PokemonListComponent {
     this.subscription = this.pokeApi.getPokemonList().subscribe(      
       data => {                        
         const dataList = data.results
-        this.pokemonList = dataList;
-
+        this.pokemonList = dataList;    
+            
         this.pokemonList.forEach((_: any, index: number) => {                         
           this.pokeApi.getPokemonInfo(index + 1).subscribe(
             data => {        
               this.pokemonInfo.push(data)
               this.pokemonInfo.sort((a:PokemonInfo, b:PokemonInfo) => {
                 return a.id - b.id 
-              })                           
+              })
+
+              this.pokemonLength.emit(this.pokemonList.length);         
             }
           )          
         })
