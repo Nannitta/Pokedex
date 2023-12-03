@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { StylesService } from 'src/services/styles.service';
 
 @Component({
@@ -10,7 +10,10 @@ export class PokemonCardComponent {
   @Input() pokemon: any;
   @Input() position: any;
 
+  @ViewChild('pokemonOnView') PokemonCardComponent: ElementRef | undefined
+
   isSelected: boolean
+  pokemonSelected: any
 
   constructor(private styleService: StylesService) {
     this.isSelected = false
@@ -28,12 +31,13 @@ export class PokemonCardComponent {
   ngOnChanges() {   
     if (this.pokemon.id === this.position.toString()) {
       this.isSelected = true
+
+      if(this.PokemonCardComponent instanceof ElementRef && this.PokemonCardComponent.nativeElement) {
+        this.PokemonCardComponent.nativeElement.scrollIntoView({behavior: 'smooth', block: 'nearest'})
+      }
     } else {
       this.isSelected = false
     }
-
-    console.log(this.pokemon.id, 'id');
-    console.log(this.position, 'position');
   }
   
   ngOnInit() {
@@ -45,9 +49,9 @@ export class PokemonCardComponent {
     }
     
     this.pokemon.id = this.pokemon.id.toString();
-
+    
     if (this.pokemon.id === '001') {
       this.isSelected = true
     }      
-    }
+  }
 }

@@ -16,7 +16,6 @@ export class HomePageComponent {
 
   getPokemonListLength(length: number) {
     this.pokemonLength = length
-    console.log(this.pokemonLength);
   }
 
   stylesApplied() {
@@ -44,6 +43,6 @@ export class HomePageComponent {
       this.position = '00' + this.position
     } else if (this.position >= 10 && this.position < 100) {
       this.position = '0' + this.position
-    }    
+    }
   }
 }
