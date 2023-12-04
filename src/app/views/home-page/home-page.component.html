@@ -1,7 +1,15 @@
 <main>
   <div class="container-user-actions">
     <div class="container-searchbar">
-      <input type="text" id="search" name="search" disabled />
+      <input
+        type="text"
+        id="search"
+        name="search"
+        placeholder="Buscar pokémon"
+        [value]="data.searchValue"
+        (keyup)="onChangeInput(searchInput.value)"
+        #searchInput
+      />
       <img
         src="../../../assets/images/searchIcon.svg"
         alt="Icono de buscador"
@@ -26,8 +34,10 @@
     </div>
   </div>
   <app-pokemon-list
+    [pokemonSearch]="pokemonSearch"
     [position]="position"
     (pokemonLength)="getPokemonListLength($event)"
+    (allPokemon)="getAllPokemon($event)"
     #pokemonListWithScroll
   ></app-pokemon-list>
 </main>

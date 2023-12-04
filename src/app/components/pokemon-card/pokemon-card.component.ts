@@ -41,6 +41,9 @@ export class PokemonCardComponent {
   }
   
   ngOnInit() {
+    if (this.pokemon.id[0] === '0') {
+      return
+    }
     if (this.pokemon.id < 10) {
       this.pokemon.id = '00' + this.pokemon.id
     }

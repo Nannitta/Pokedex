@@ -11,14 +11,17 @@ import { PokeApiService } from 'src/services/poke-api.service';
 export class PokemonListComponent {
   @ViewChildren('pokemonContent')
   pokemonCard!: QueryList<any>
-  pokemonInfo: Array<any>
+  pokemonInfo: Array<PokemonInfo>
   pokemonList: any
   subscription?: Subscription
   @Input() position: any
+  @Input() pokemonSearch: Array<PokemonInfo>
   @Output() pokemonLength = new EventEmitter<number>();
+  @Output() allPokemon = new EventEmitter<any[]>();
   
   constructor (private pokeApi: PokeApiService) {
     this.pokemonInfo = []
+    this.pokemonSearch = []
   }
 
   ngOnInit() {
@@ -35,13 +38,20 @@ export class PokemonListComponent {
                 return a.id - b.id 
               })
 
-              this.pokemonLength.emit(this.pokemonList.length);         
+              this.pokemonLength.emit(this.pokemonList.length);            
+              this.allPokemon.emit(this.pokemonInfo);                      
             }
           )          
         })
       }
-    )
-  }
+      )
+      this.pokemonSearch = this.pokemonInfo
+    }
+
+    ngOnChanges() {
+      this.pokemonLength.emit(this.pokemonSearch.length);            
+      this.allPokemon.emit(this.pokemonInfo);   
+    }
 }
 
 
