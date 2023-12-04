@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PokemonInfo } from 'src/models/types/types';
 import { StylesService } from 'src/services/styles.service';
 
 @Component({
@@ -9,13 +10,24 @@ import { StylesService } from 'src/services/styles.service';
 export class HomePageComponent {
   position: string | number
   pokemonLength: number = 0
+  allPokemon: any
+  pokemonSearch: PokemonInfo[]
+
+  data = {
+    searchValue: ''
+  }
   
   constructor(private styleService: StylesService) {
     this.position = '001'
+    this.pokemonSearch = []
   }
 
   getPokemonListLength(length: number) {
     this.pokemonLength = length
+  }
+
+  getAllPokemon(allPokemon: any[]) {
+    this.allPokemon = allPokemon
   }
 
   stylesApplied() {
@@ -43,6 +55,18 @@ export class HomePageComponent {
       this.position = '00' + this.position
     } else if (this.position >= 10 && this.position < 100) {
       this.position = '0' + this.position
-    }
+    }    
+  }
+  
+  onChangeInput(newValue: string) {
+    this.data.searchValue = newValue
+    this.pokemonSearch = []       
+    
+    this.allPokemon.forEach((pokemon: PokemonInfo) => {
+      if (pokemon.name.includes(this.data.searchValue)) {       
+        this.pokemonSearch.push(pokemon)
+        console.log(this.allPokemon);
+      }
+    })
   }
 }
