@@ -1,43 +1,47 @@
 <main>
-  <div class="container-user-actions">
-    <div class="container-searchbar">
-      <input
-        type="text"
-        id="search"
-        name="search"
-        placeholder="Buscar pokémon"
-        [value]="data.searchValue"
-        (keyup)="onChangeInput(searchInput.value)"
-        #searchInput
-      />
-      <img
-        src="../../../assets/images/searchIcon.svg"
-        alt="Icono de buscador"
-        class="search-icon"
-      />
-    </div>
-    <div class="buttons-top-bottom">
-      <button (click)="toggleImage('up')">
-        <img
-          src="../../../assets/images/top-icon.svg"
-          alt="Flecha arriba"
-          class="icon-arrow"
+  <div class="pokemon-gift-desktop"></div>
+  <div class="background-orange"></div>
+  <div class="background-line">
+    <div class="container-user-actions">
+      <div class="container-searchbar">
+        <input
+          type="text"
+          id="search"
+          name="search"
+          placeholder="Buscar pokémon"
+          [value]="data.searchValue"
+          (keyup)="onChangeInput(searchInput.value)"
+          #searchInput
         />
-      </button>
-      <button (click)="toggleImage('down')">
         <img
-          src="../../../assets/images/bottom-icon.svg"
-          alt="Flecha abajo"
-          class="icon-arrow"
+          src="../../../assets/images/searchIcon.svg"
+          alt="Icono de buscador"
+          class="search-icon"
         />
-      </button>
+      </div>
+      <div class="buttons-top-bottom">
+        <button (click)="toggleImage('up')">
+          <img
+            src="../../../assets/images/top-icon.svg"
+            alt="Flecha arriba"
+            class="icon-arrow"
+          />
+        </button>
+        <button (click)="toggleImage('down')">
+          <img
+            src="../../../assets/images/bottom-icon.svg"
+            alt="Flecha abajo"
+            class="icon-arrow"
+          />
+        </button>
+      </div>
     </div>
+    <app-pokemon-list
+      [pokemonSearch]="pokemonSearch"
+      [position]="position"
+      (pokemonLength)="getPokemonListLength($event)"
+      (allPokemon)="getAllPokemon($event)"
+      #pokemonListWithScroll
+    ></app-pokemon-list>
   </div>
-  <app-pokemon-list
-    [pokemonSearch]="pokemonSearch"
-    [position]="position"
-    (pokemonLength)="getPokemonListLength($event)"
-    (allPokemon)="getAllPokemon($event)"
-    #pokemonListWithScroll
-  ></app-pokemon-list>
 </main>

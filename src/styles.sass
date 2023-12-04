@@ -1,3 +1,6 @@
+$tablet-width: 768px
+$laptop-width: 1366px
+$desktop-width: 1920px
 $white: #F9F4F4
 $black: #333333
 $orange-pokedex: #EF5A3F
@@ -8,11 +11,25 @@ $shadow-top: 0px -4px 4px 0px rgba(0, 0, 0, 0.25)
 $shadow-bottom: 0px 4px 4px 0px rgba(0, 0, 0, 0.25)
 $bg-selected-black: url('./assets/images/black-selected.svg')
 $bg-selected-orange: url('./assets/images/orange-select.svg')
+$bg-desktop-orange: url('./assets/images/bg-orange.svg')
+$bg-desktop-line: url('./assets/images/bg-line-red.svg')
 
 @font-face
   font-family: 'Catamaran'
   src: url('./assets/fonts/Catamaran-Bold.ttf')
   font-display: swap
+
+@mixin tablet
+  @media  (min-width: #{$tablet-width}) and (max-width: #{$laptop-width - 1px})
+    @content
+
+@mixin laptop
+  @media (min-width: $laptop-width) and (max-width: $desktop-width - 1px)
+    @content
+
+@mixin desktop
+  @media (min-width: $desktop-width)
+    @content
 
 *
   margin: 0
