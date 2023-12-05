@@ -1,4 +1,4 @@
-<li #pokemonOnView>
+<li #pokemonOnView *ngIf="pokemon">
   <div [ngClass]="{ 'orange-selected': isSelected }">
     <article class="normal" [ngClass]="{ selected: isSelected }">
       <div class="container-number-sprite">

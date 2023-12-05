@@ -10,32 +10,34 @@ import { PokeApiService } from 'src/services/poke-api.service';
 })
 export class PokemonListComponent {
   @ViewChildren('pokemonContent')
-  pokemonCard!: QueryList<any>
-  pokemonInfo: Array<PokemonInfo>
-  pokemonList: any
+  pokemonCard!: QueryList<PokemonInfo[]>
+  pokemonInfo: PokemonInfo[]
+  pokemonList: PokemonInfo[]
   subscription?: Subscription
-  @Input() position: any
-  @Input() pokemonSearch: Array<PokemonInfo>
+  @Input() position: number | string
+  @Input() pokemonSearch: PokemonInfo[]
   @Output() pokemonLength = new EventEmitter<number>();
-  @Output() allPokemon = new EventEmitter<any>();
+  @Output() allPokemon = new EventEmitter<PokemonInfo[]>();
   
   constructor (private pokeApi: PokeApiService) {
     this.pokemonInfo = []
+    this.pokemonList = []
+    this.position = 1
     this.pokemonSearch = []
   }
 
-  ngOnInit() {
+  ngOnInit() {   
     this.subscription = this.pokeApi.getPokemonList().subscribe(      
       data => {                        
         const dataList = data.results
-        this.pokemonList = dataList;    
+        this.pokemonList = dataList;            
             
         this.pokemonList.forEach((_: any, index: number) => {                         
           this.pokeApi.getPokemonInfo(index + 1).subscribe(
             data => {        
               this.pokemonInfo.push(data)
               this.pokemonInfo.sort((a:PokemonInfo, b:PokemonInfo) => {
-                return a.id - b.id 
+                return +a.id - +b.id 
               })             
               this.pokemonLength.emit(this.pokemonList.length);            
               this.allPokemon.emit(this.pokemonInfo);                                   

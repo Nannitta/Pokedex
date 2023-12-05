@@ -9,9 +9,9 @@ import { StylesService } from 'src/services/styles.service';
 })
 export class HomePageComponent {
   position: string | number
-  pokemonLength: number = 0
-  allPokemon: any
-  pokemonSearch: any
+  pokemonLength: number
+  allPokemon: PokemonInfo[]
+  pokemonSearch: PokemonInfo[]
   pokemonGift: string
   isSearch: boolean
 
@@ -21,8 +21,10 @@ export class HomePageComponent {
   
   constructor(private styleService: StylesService, private changeDetectorRef: ChangeDetectorRef) {
     this.position = '001'
+    this.pokemonLength = 0
+    this.allPokemon = []
     this.pokemonSearch = []
-    this.pokemonGift = ''
+    this.pokemonGift = '../../assets/images/pokeballGif.gif'
     this.isSearch = false
   }
 
@@ -41,7 +43,7 @@ export class HomePageComponent {
     this.pokemonLength = length
   }
   
-  getAllPokemon(allPokemon: any) {  
+  getAllPokemon(allPokemon: PokemonInfo[]) {  
     this.allPokemon = allPokemon
   }
   
@@ -74,11 +76,11 @@ export class HomePageComponent {
   }
   
   onChangeInput(newValue: string) {
-    this.data.searchValue = newValue
+    this.data.searchValue = newValue.trim()
     this.pokemonSearch = []
     this.position = 1       
     
-    this.allPokemon.forEach((pokemon: PokemonInfo, index: any) => {
+    this.allPokemon.forEach((pokemon: PokemonInfo) => {
       if (pokemon.name.includes(this.data.searchValue)) {       
         this.pokemonSearch.push(pokemon)
       }
@@ -87,11 +89,11 @@ export class HomePageComponent {
     this.isSearch = true
   }
 
-  updatePokemonGift(pokemonArray: any) {
+  updatePokemonGift(pokemonArray: PokemonInfo[]) {
     if (+this.position > 0) {
       const selectedPokemon = pokemonArray[+this.position - 1];
-      if (selectedPokemon) {
-        this.pokemonGift = selectedPokemon.sprites.versions["generation-v"]["black-white"].animated.front_default;
+      if (selectedPokemon && selectedPokemon.sprites.versions?.['generation-v']['black-white'].animated) {
+        this.pokemonGift = selectedPokemon.sprites.versions["generation-v"]["black-white"].animated.front_default;        
       }
     }    
   }
