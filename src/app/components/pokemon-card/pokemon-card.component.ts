@@ -7,8 +7,9 @@ import { StylesService } from 'src/services/styles.service';
   styleUrls: ['./pokemon-card.component.sass']
 })
 export class PokemonCardComponent {
-  @Input() pokemon: any;
-  @Input() position: any;
+  @Input() pokemon: any
+  @Input() position: any
+  @Input() index: number
 
   @ViewChild('pokemonOnView') PokemonCardComponent: ElementRef | undefined
 
@@ -17,6 +18,7 @@ export class PokemonCardComponent {
 
   constructor(private styleService: StylesService) {
     this.isSelected = false
+    this.index = 0
   }
 
   stylesApplied() {
@@ -28,8 +30,8 @@ export class PokemonCardComponent {
     this.styleService.toggleImage();
   }
 
-  ngOnChanges() {   
-    if (this.pokemon.id === this.position.toString()) {
+  ngOnChanges() { 
+    if (this.index === +this.position - 1) {
       this.isSelected = true
 
       if(this.PokemonCardComponent instanceof ElementRef && this.PokemonCardComponent.nativeElement) {
@@ -38,6 +40,7 @@ export class PokemonCardComponent {
     } else {
       this.isSelected = false
     }
+    this.position = 1
   }
   
   ngOnInit() {

@@ -1,8 +1,9 @@
 <ul>
-  <ng-container *ngFor="let pokemon of pokemonSearch">
+  <ng-container *ngFor="let pokemon of pokemonSearch; let index = index">
     <app-pokemon-card
       #pokemonContent
       [pokemon]="pokemon"
+      [index]="index"
       [position]="position"
     ></app-pokemon-card>
   </ng-container>

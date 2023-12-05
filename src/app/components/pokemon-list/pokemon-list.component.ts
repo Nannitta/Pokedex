@@ -17,7 +17,7 @@ export class PokemonListComponent {
   @Input() position: any
   @Input() pokemonSearch: Array<PokemonInfo>
   @Output() pokemonLength = new EventEmitter<number>();
-  @Output() allPokemon = new EventEmitter<any[]>();
+  @Output() allPokemon = new EventEmitter<any>();
   
   constructor (private pokeApi: PokeApiService) {
     this.pokemonInfo = []
@@ -36,10 +36,9 @@ export class PokemonListComponent {
               this.pokemonInfo.push(data)
               this.pokemonInfo.sort((a:PokemonInfo, b:PokemonInfo) => {
                 return a.id - b.id 
-              })
-
+              })             
               this.pokemonLength.emit(this.pokemonList.length);            
-              this.allPokemon.emit(this.pokemonInfo);                      
+              this.allPokemon.emit(this.pokemonInfo);                                   
             }
           )          
         })
@@ -47,10 +46,10 @@ export class PokemonListComponent {
       )
       this.pokemonSearch = this.pokemonInfo
     }
-
-    ngOnChanges() {
+    
+    ngOnChanges() {      
       this.pokemonLength.emit(this.pokemonSearch.length);            
-      this.allPokemon.emit(this.pokemonInfo);   
+      this.allPokemon.emit(this.pokemonInfo);         
     }
 }
 

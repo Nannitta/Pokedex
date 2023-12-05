@@ -8,6 +8,19 @@ main
   grid-row: 2 / 3
   @include desktop
     align-items: flex-end
+  .pokemon-gif-desktop
+    display: none
+    @include desktop
+      display: flex
+      width: 300px
+      height: 300px
+      object-fit: cover
+      position: absolute
+      left: 200px
+      img
+        width: 100%
+        height: 100%
+        z-index: 1
   .background-orange
     @include desktop
       background: $bg-desktop-orange
