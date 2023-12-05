@@ -1,29 +1,31 @@
-<li #pokemonOnView *ngIf="pokemon">
-  <div [ngClass]="{ 'orange-selected': isSelected }">
-    <article class="normal" [ngClass]="{ selected: isSelected }">
-      <div class="container-number-sprite">
-        <img
-          src="{{ pokemon.sprites.front_default }}"
-          alt="Imagen del pokemon"
-          class="pokemon-sprite"
-        />
-        <h1>
-          No. {{ pokemon.id }}
-          <span class="pokemon-name"
-            >{{ pokemon.name[0] | uppercase
-            }}{{ pokemon.name.slice(1).split("-")[0] }}</span
-          >
-        </h1>
-      </div>
+<div
+  [ngClass]="{ 'orange-selected': isSelected }"
+  *ngIf="pokemon"
+  #pokemonOnView
+>
+  <article class="normal" [ngClass]="{ selected: isSelected }">
+    <div class="container-number-sprite">
       <img
-        *ngIf="isSelected"
-        src="../../../assets/images/pokeballIcon.svg"
-        alt="Icono de Pokeball"
-        [ngClass]="{
-          'pokeball-icon': isSelected,
-          disabled: !isSelected
-        }"
+        src="{{ pokemon.sprites.front_default }}"
+        alt="Imagen del pokemon"
+        class="pokemon-sprite"
       />
-    </article>
-  </div>
-</li>
+      <h1>
+        No. {{ pokemon.id }}
+        <span class="pokemon-name"
+          >{{ pokemon.name[0] | uppercase
+          }}{{ pokemon.name.slice(1).split("-")[0] }}</span
+        >
+      </h1>
+    </div>
+    <img
+      *ngIf="isSelected"
+      src="../../../assets/images/pokeballIcon.svg"
+      alt="Icono de Pokeball"
+      [ngClass]="{
+        'pokeball-icon': isSelected,
+        disabled: !isSelected
+      }"
+    />
+  </article>
+</div>
