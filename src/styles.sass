@@ -31,6 +31,10 @@ $bg-desktop-line: url('./assets/images/bg-line-red.svg')
   @media (min-width: $desktop-width)
     @content
 
+@mixin scrollbar
+  &::-webkit-scrollbar
+    display: none
+
 *
   margin: 0
   padding: 0
