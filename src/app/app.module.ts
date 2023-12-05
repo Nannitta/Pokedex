@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HomePageComponent } from './views/home-page/home-page.component';
-import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { PokemonListComponent } from './components/pokemon-list/pokemon-list.component';
 import { PokemonCardComponent } from './components/pokemon-card/pokemon-card.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -17,7 +16,6 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     HeaderComponent,
     FooterComponent,
     HomePageComponent,
-    SearchBarComponent,
     PokemonListComponent,
     PokemonCardComponent,
   ],

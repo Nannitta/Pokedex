@@ -1,0 +1,22 @@
+[
+    {
+        "base_experience": 64,
+        "height": 7,
+        "id": "001",
+        "is_default": true,
+        "location_area_encounters": "https://pokeapi.co/api/v2/pokemon/1/encounters",
+        "name": "bulbasaur",
+        "order": 1,
+        "weight": 69
+    },
+    {
+        "base_experience": 64,
+        "height": 10,
+        "id": "002",
+        "is_default": true,
+        "location_area_encounters": "https://pokeapi.co/api/v2/pokemon/2/encounters",
+        "name": "ivysaur",
+        "order": 2,
+        "weight": 130
+    }
+]
