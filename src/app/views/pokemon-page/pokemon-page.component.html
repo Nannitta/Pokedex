@@ -1,0 +1,43 @@
+<main #pokemonInfo>
+  <section>
+    <h1>
+      No. {{ pokemon.id }}
+      <span>{{ pokemon.name }}</span>
+    </h1>
+    <img src="{{ pokemonGif }}" alt="" />
+  </section>
+
+  <section>
+    <button>
+      <img src="../../../assets/images/top-icon.svg" alt="Volver atras" />
+    </button>
+    <div>
+      <p>PS {{ pokemonPs }}</p>
+      <p>S.ATT {{ pokemonSpAtt }}</p>
+    </div>
+
+    <div>
+      <p>ATT {{ pokemonAtt }}</p>
+      <p>S.DEF {{ pokemonSpDef }}</p>
+    </div>
+
+    <div>
+      <p>DEF {{ pokemonDef }}</p>
+      <p>SPD {{ pokemonSpd }}</p>
+    </div>
+
+    <p>{{ pokemonDescription }}</p>
+
+    <div>
+      <p>Height {{ pokemonHeight }}</p>
+      <p>Weight {{ pokemonWeight }}</p>
+    </div>
+
+    <p>Habitat {{ pokemonHabitat }}</p>
+
+    <div>
+      <span></span>
+      <p></p>
+    </div>
+  </section>
+</main>
