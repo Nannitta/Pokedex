@@ -1,6 +1,7 @@
 import { Component, ElementRef, HostListener, Input, ViewChild } from '@angular/core';
 import { PokemonInfo } from 'src/models/types/types';
 import { StylesService } from 'src/services/styles.service';
+import  { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pokemon-card',
@@ -15,12 +16,14 @@ export class PokemonCardComponent {
   @ViewChild('pokemonOnView') PokemonCardComponent: ElementRef | undefined
 
   isSelected: boolean
+  imageUrl: string
 
-  constructor(private styleService: StylesService) {
+  constructor(private styleService: StylesService, private _router: Router) {
     this.pokemon = null
     this.position = 1
     this.index = 0
     this.isSelected = false
+    this.imageUrl = ''
   }
 
   stylesApplied() {
@@ -30,6 +33,11 @@ export class PokemonCardComponent {
   toggleImage() {
     this.styleService.toggleStyles();
     this.styleService.toggleImage();
+  }
+
+  onRedirect(position: any) {
+    if (this.pokemon && position)
+    this._router.navigate(['/pokemon', +this.pokemon.id]);
   }
 
   ngOnChanges() { 
@@ -45,7 +53,7 @@ export class PokemonCardComponent {
   }
   
   ngOnInit() {
-    if (this.pokemon) {
+    if (this.pokemon) {     
       if (typeof this.pokemon.id === 'string' && this.pokemon.id[0] === '0') {
         return
       }
@@ -61,6 +69,7 @@ export class PokemonCardComponent {
       if (this.pokemon.id === '001') {
         this.isSelected = true
       }      
+      this.imageUrl = this.pokemon.sprites.front_default
     }
   }
 

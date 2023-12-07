@@ -3,10 +3,14 @@
   *ngIf="pokemon"
   #pokemonOnView
 >
-  <article class="normal" [ngClass]="{ selected: isSelected }">
+  <article
+    class="normal"
+    [ngClass]="{ selected: isSelected }"
+    (click)="onRedirect('pokemon')"
+  >
     <div class="container-number-sprite">
       <img
-        src="{{ pokemon.sprites.front_default }}"
+        src="{{ imageUrl }}"
         alt="Imagen del pokemon"
         class="pokemon-sprite"
       />
