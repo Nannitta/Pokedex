@@ -13,7 +13,7 @@ export class PokemonListComponent {
   pokemonCard!: QueryList<PokemonInfo[]>
   pokemonInfo: PokemonInfo[]
   pokemonList: PokemonInfo[]
-  subscription?: Subscription
+  pokemonSubscription?: Subscription
   @Input() position: number | string
   @Input() pokemonSearch: PokemonInfo[]
   @Output() pokemonLength = new EventEmitter<number>();
@@ -27,7 +27,7 @@ export class PokemonListComponent {
   }
 
   ngOnInit() {   
-    this.subscription = this.pokeApi.getPokemonList().subscribe(      
+    this.pokemonSubscription = this.pokeApi.getPokemonList().subscribe(      
       data => {                        
         const dataList = data.results
         this.pokemonList = dataList;            
@@ -52,6 +52,12 @@ export class PokemonListComponent {
     ngOnChanges() {      
       this.pokemonLength.emit(this.pokemonSearch.length);            
       this.allPokemon.emit(this.pokemonInfo);         
+    }
+
+    ngOnDestroy() {
+      if(this.pokemonSubscription) {
+        this.pokemonSubscription.unsubscribe();
+      }
     }
 }
 

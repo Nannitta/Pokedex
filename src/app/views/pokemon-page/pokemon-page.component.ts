@@ -1,8 +1,8 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EffectRef, Input, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { PokeApiService } from 'src/services/poke-api.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { PokemonInfo, PokemonMoreInfo } from 'src/models/types/types';
+import { Ability, EffectEntry, PokemonAbility, PokemonAbilityContainer, PokemonInfo, PokemonMoreInfo } from 'src/models/types/types';
 
 @Component({
   selector: 'app-pokemon-page',
@@ -11,7 +11,9 @@ import { PokemonInfo, PokemonMoreInfo } from 'src/models/types/types';
 })
 export class PokemonPageComponent {
   @ViewChild('pokemonInfo')
-  subscription?: Subscription
+  pokemonInfoSubscription?: Subscription
+  pokemonDescriptionSubscription?: Subscription
+  pokemonAbilityDescription?: Subscription
   pokemonIndex: number = 0
   pokemon: PokemonInfo = {} as PokemonInfo;
   capitalLetter: string
@@ -27,6 +29,7 @@ export class PokemonPageComponent {
   pokemonHeight: number
   pokemonWeight: number
   pokemonHabitat: string
+  abilities: PokemonAbility[]
 
   constructor (private pokeApi: PokeApiService, private router: Router, private route: ActivatedRoute) {
     this.route.url.subscribe(segments => {
@@ -45,11 +48,12 @@ export class PokemonPageComponent {
     this.pokemonHeight = 0
     this.pokemonWeight = 0
     this.pokemonHabitat = ''
+    this.abilities = []
   }
 
   ngOnInit() {   
-    this.subscription = this.pokeApi.getPokemonInfo(this.pokemonIndex).subscribe(
-      data => {
+    this.pokemonInfoSubscription = this.pokeApi.getPokemonInfo(this.pokemonIndex).subscribe(
+      data => {       
         this.pokemon = data        
         if (+this.pokemon.id < 10) {
           this.pokemon.id = '00' + this.pokemon.id
@@ -57,7 +61,8 @@ export class PokemonPageComponent {
         if (+this.pokemon.id >= 10 && +this.pokemon.id < 100) {
           this.pokemon.id = '0' + this.pokemon.id
         }
-
+        console.log(this.pokemon);
+        
         this.capitalLetter = this.pokemon.name[0].toLocaleUpperCase()
         this.pokemon.name = this.capitalLetter + this.pokemon.name.slice(1)
         this.pokemonGif = this.pokemon.sprites.front_default
@@ -69,15 +74,48 @@ export class PokemonPageComponent {
         this.pokemonSpd = this.pokemon.stats[5].base_stat                      
         this.pokemonHeight = this.pokemon.height
         this.pokemonWeight = this.pokemon.weight
+
+        this.pokemon.abilities.forEach((ability: PokemonAbilityContainer) => {
+          this.pokemonAbilityDescription = this.pokeApi.getAbilityDescription(ability.ability.url).subscribe(
+            data => {            
+              const abilityDescription = data.effect_entries.filter((entry: EffectEntry) => entry.language.name === 'en')
+              const pokemonAbilities: PokemonAbility = {
+                name: data.name.toLocaleUpperCase().replaceAll('-', ' '),
+                description: abilityDescription[0].effect
+              }
+              this.abilities.push(pokemonAbilities);                           
+            }
+          )
+        })
       }
     )
 
-    this.subscription = this.pokeApi.getPokemonDescription(this.pokemonIndex).subscribe(
+    this.pokemonDescriptionSubscription = this.pokeApi.getPokemonDescription(this.pokemonIndex).subscribe(
       data => {
-        this.pokemonMoreInfo = data
-        this.pokemonDescription = this.pokemonMoreInfo.flavor_text_entries[0].flavor_text.replace('\f', ' ')
-        this.pokemonHabitat = this.pokemonMoreInfo.habitat.name[0].toLocaleUpperCase() + this.pokemonMoreInfo.habitat.name.slice(1)        
+        this.pokemonMoreInfo = data    
+        
+        const filteredEnglishDescription = this.pokemonMoreInfo.flavor_text_entries.filter((text) => text.language.name === 'en')[0]
+        
+        this.pokemonDescription = filteredEnglishDescription.flavor_text.replace('\f', ' ')        
+        if (this.pokemonMoreInfo.habitat === null) {
+          this.pokemonHabitat = 'Unknown'
+        } else {
+          this.pokemonHabitat = this.pokemonMoreInfo.habitat.name[0].toLocaleUpperCase() + this.pokemonMoreInfo.habitat.name.slice(1)        
+        }
       }
     )
+  }
+
+  ngOnDestroy() {
+    if (this.pokemonInfoSubscription) {
+      this.pokemonInfoSubscription.unsubscribe();
+    }
+    if (this.pokemonDescriptionSubscription) {
+      this.pokemonDescriptionSubscription.unsubscribe();
+    }
+
+    if (this.pokemonAbilityDescription) {
+      this.pokemonAbilityDescription.unsubscribe();
+    }
   }
 }

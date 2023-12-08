@@ -1,11 +1,12 @@
-import { ChangeDetectorRef, Component, HostListener } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener } from '@angular/core';
 import { PokemonInfo } from 'src/models/types/types';
 import { StylesService } from 'src/services/styles.service';
 
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
-  styleUrls: ['./home-page.component.sass']
+  styleUrls: ['./home-page.component.sass'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomePageComponent {
   position: string | number
@@ -92,7 +93,7 @@ export class HomePageComponent {
   updatePokemonGift(pokemonArray: PokemonInfo[]) {
     if (+this.position > 0) {
       const selectedPokemon = pokemonArray[+this.position - 1];
-      if (selectedPokemon && selectedPokemon.sprites.versions?.['generation-v']['black-white'].animated) {
+      if (selectedPokemon && selectedPokemon.sprites.versions?.['generation-v']['black-white'].animated) {       
         this.pokemonGift = selectedPokemon.sprites.versions["generation-v"]["black-white"].animated.front_default;        
       }
     }    
