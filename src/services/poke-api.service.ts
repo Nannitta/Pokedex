@@ -11,7 +11,7 @@ export class PokeApiService {
   constructor(private http: HttpClient) { }
 
   getPokemonList(): Observable<any> {
-    return this.http.get<PokemonList>('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=151')
+    return this.http.get<PokemonList>('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=1008')
   }
 
   getPokemonInfo(number: number): Observable<PokemonInfo> {

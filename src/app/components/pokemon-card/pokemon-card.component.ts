@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, Input, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, HostListener, Input, ViewChild } from '@angular/core';
 import { PokemonInfo } from 'src/models/types/types';
 import { StylesService } from 'src/services/styles.service';
 import  { Router } from '@angular/router';
@@ -6,7 +6,8 @@ import  { Router } from '@angular/router';
 @Component({
   selector: 'app-pokemon-card',
   templateUrl: './pokemon-card.component.html',
-  styleUrls: ['./pokemon-card.component.sass']
+  styleUrls: ['./pokemon-card.component.sass'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PokemonCardComponent {
   @Input() pokemon: PokemonInfo | null
@@ -50,6 +51,10 @@ export class PokemonCardComponent {
     } else {
       this.isSelected = false
     }
+
+    if(this.pokemon) {
+      this.imageUrl = this.pokemon.sprites.front_default
+    }
   }
   
   ngOnInit() {
@@ -69,7 +74,6 @@ export class PokemonCardComponent {
       if (this.pokemon.id === '001') {
         this.isSelected = true
       }      
-      this.imageUrl = this.pokemon.sprites.front_default
     }
   }
 

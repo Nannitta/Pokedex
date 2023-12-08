@@ -35,9 +35,9 @@
 
     <p>Habitat {{ pokemonHabitat }}</p>
 
-    <div>
-      <span></span>
-      <p></p>
+    <div *ngFor="let ability of abilities">
+      <span>{{ ability.name }}</span>
+      <p>{{ ability.description }}</p>
     </div>
   </section>
 </main>

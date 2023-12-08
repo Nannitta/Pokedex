@@ -213,22 +213,27 @@ type EvolutionChain = {
 
 type FlavorTextEntry = {
   flavor_text: string;
-  language:    Color;
-  version:     Color;
+  language: Language;
+  version: Color;
+}
+
+type Language = {
+  name: string
+  url: string
 }
 
 type Genus = {
-  genus:    string;
+  genus: string;
   language: Color;
 }
 
 type Name = {
   language: Color;
-  name:     string;
+  name: string;
 }
 
 type PalParkEncounter = {
-  area:       Color;
+  area: Color;
   base_score: number;
   rate:       number;
 }
@@ -281,4 +286,16 @@ type Pokemon = {
   is_hidden: boolean;
   pokemon:   Generation;
   slot:      number;
+}
+
+export type PokemonAbility = {
+  name: string
+  description: string
+  url?: string
+}
+
+export type PokemonAbilityContainer = {
+ slot: number
+ is_hidden: boolean
+ ability: Species
 }
