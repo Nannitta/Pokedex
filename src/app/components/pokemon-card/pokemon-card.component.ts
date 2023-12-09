@@ -90,4 +90,13 @@ export class PokemonCardComponent {
       }
     }
   }
+
+  @HostListener('window:keydown', ['$event]'])
+  pressKeyDown(event: KeyboardEvent) {
+    if(event.key === 'Enter') {
+      if (this.isSelected !== false && this.position && this.pokemon) {       
+        this._router.navigate(['/pokemon', +this.pokemon.id]);
+      }
+    }
+  }
 }
