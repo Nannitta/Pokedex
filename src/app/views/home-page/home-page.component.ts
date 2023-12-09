@@ -13,7 +13,7 @@ export class HomePageComponent {
   pokemonLength: number
   allPokemon: PokemonInfo[]
   pokemonSearch: PokemonInfo[]
-  pokemonGift: string
+  pokemonGif: string
   isSearch: boolean
 
   data = {
@@ -25,7 +25,7 @@ export class HomePageComponent {
     this.pokemonLength = 0
     this.allPokemon = []
     this.pokemonSearch = []
-    this.pokemonGift = '../../assets/images/pokeballGif.gif'
+    this.pokemonGif = '../../assets/images/pokeballGif.gif'
     this.isSearch = false
   }
 
@@ -94,8 +94,12 @@ export class HomePageComponent {
     if (+this.position > 0) {
       const selectedPokemon = pokemonArray[+this.position - 1];
       if (selectedPokemon && selectedPokemon.sprites.versions?.['generation-v']['black-white'].animated) {       
-        this.pokemonGift = selectedPokemon.sprites.versions["generation-v"]["black-white"].animated.front_default;        
-      }
+        if (selectedPokemon.sprites.versions?.['generation-v']['black-white'].animated.front_default) {
+          this.pokemonGif = selectedPokemon.sprites.versions["generation-v"]["black-white"].animated.front_default;        
+        } else {
+          this.pokemonGif = selectedPokemon.sprites.front_default
+        }
+      } 
     }    
   }
   
