@@ -1,43 +1,76 @@
 <main #pokemonInfo>
-  <section>
+  <section class="pokemonImage">
     <h1>
       No. {{ pokemon.id }}
       <span>{{ pokemon.name }}</span>
     </h1>
-    <img src="{{ pokemonGif }}" alt="" />
+    <div class="container-sprite-types">
+      <img src="{{ pokemonGif }}" alt="Pokemon sprite" class="pokemon-sprite" />
+      <aside>
+        <img
+          *ngFor="let type of pokemon.types"
+          src="../../../assets/images/pokemonTypes/{{ type.type.name }}.webp"
+          alt="Pokemon types"
+          class="pokemon-types"
+        />
+      </aside>
+    </div>
   </section>
 
-  <section>
-    <button>
-      <img src="../../../assets/images/top-icon.svg" alt="Volver atras" />
+  <section class="pokemon-info">
+    <button (click)="onclick()">
+      <img
+        src="../../../assets/images/back-icon.svg"
+        alt="back home page"
+        class="icon-arrow"
+      />
     </button>
-    <div>
-      <p>PS {{ pokemonPs }}</p>
-      <p>S.ATT {{ pokemonSpAtt }}</p>
+    <div class="stats">
+      <p class="p-stats">
+        PS <span>{{ pokemonPs }}</span>
+      </p>
+      <p class="p-stats">
+        S.ATT <span>{{ pokemonSpAtt }}</span>
+      </p>
     </div>
 
-    <div>
-      <p>ATT {{ pokemonAtt }}</p>
-      <p>S.DEF {{ pokemonSpDef }}</p>
+    <div class="stats">
+      <p class="p-stats">
+        ATT <span>{{ pokemonAtt }}</span>
+      </p>
+      <p class="p-stats">
+        S.DEF <span>{{ pokemonSpDef }}</span>
+      </p>
     </div>
 
-    <div>
-      <p>DEF {{ pokemonDef }}</p>
-      <p>SPD {{ pokemonSpd }}</p>
+    <div class="stats">
+      <p class="p-stats">
+        DEF <span>{{ pokemonDef }}</span>
+      </p>
+      <p class="p-stats">
+        SPD <span>{{ pokemonSpd }}</span>
+      </p>
     </div>
 
-    <p>{{ pokemonDescription }}</p>
+    <p class="pokemon-desc">{{ pokemonDescription }}</p>
 
-    <div>
-      <p>Height {{ pokemonHeight }}</p>
-      <p>Weight {{ pokemonWeight }}</p>
+    <div class="stats">
+      <p class="p-stats">
+        Height <span>{{ pokemonHeight }}</span>
+      </p>
+      <p class="p-stats">
+        Weight <span>{{ pokemonWeight }}</span>
+      </p>
     </div>
 
-    <p>Habitat {{ pokemonHabitat }}</p>
+    <p class="habitat">
+      Habitat <span>{{ pokemonHabitat }}</span>
+    </p>
 
-    <div *ngFor="let ability of abilities">
-      <span>{{ ability.name }}</span>
+    <div *ngFor="let ability of abilities" class="abilities">
+      <span class="ability-name">{{ ability.name }}</span>
       <p>{{ ability.description }}</p>
     </div>
   </section>
 </main>
+<div class="mb-tb-background"></div>

@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component, EffectRef, Input, ViewChild } from '@angular/core';
+import { Component, HostListener, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { PokeApiService } from 'src/services/poke-api.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Ability, EffectEntry, PokemonAbility, PokemonAbilityContainer, PokemonInfo, PokemonMoreInfo } from 'src/models/types/types';
+import { EffectEntry, PokemonAbility, PokemonAbilityContainer, PokemonInfo, PokemonMoreInfo } from 'src/models/types/types';
 
 @Component({
   selector: 'app-pokemon-page',
@@ -31,13 +31,13 @@ export class PokemonPageComponent {
   pokemonHabitat: string
   abilities: PokemonAbility[]
 
-  constructor (private pokeApi: PokeApiService, private router: Router, private route: ActivatedRoute) {
+  constructor (private pokeApi: PokeApiService, private _router: Router, private route: ActivatedRoute) {
     this.route.url.subscribe(segments => {
-      const pathname = this.router.url;
+      const pathname = this._router.url;
       return this.pokemonIndex = +pathname.split('/')[2]
     })
     this.capitalLetter = ''
-    this.pokemonGif = ''
+    this.pokemonGif = '../../assets/images/pokeballGif.gif'
     this.pokemonPs = 0
     this.pokemonSpAtt = 0
     this.pokemonAtt = 0
@@ -51,6 +51,11 @@ export class PokemonPageComponent {
     this.abilities = []
   }
 
+  @HostListener('click')
+  onclick() {
+    this._router.navigate([''])
+  }
+
   ngOnInit() {   
     this.pokemonInfoSubscription = this.pokeApi.getPokemonInfo(this.pokemonIndex).subscribe(
       data => {       
@@ -60,9 +65,7 @@ export class PokemonPageComponent {
         }
         if (+this.pokemon.id >= 10 && +this.pokemon.id < 100) {
           this.pokemon.id = '0' + this.pokemon.id
-        }
-        console.log(this.pokemon);
-        
+        }        
         this.capitalLetter = this.pokemon.name[0].toLocaleUpperCase()
         this.pokemon.name = this.capitalLetter + this.pokemon.name.slice(1)
         if (this.pokemon.sprites.versions?.['generation-v']['black-white'].animated?.front_default) {

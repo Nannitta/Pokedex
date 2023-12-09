@@ -9,11 +9,7 @@
     (click)="onRedirect('pokemon')"
   >
     <div class="container-number-sprite">
-      <img
-        src="{{ imageUrl }}"
-        alt="Imagen del pokemon"
-        class="pokemon-sprite"
-      />
+      <img src="{{ imageUrl }}" alt="Pokemon sprite" class="pokemon-sprite" />
       <h1>
         No. {{ pokemon.id }}
         <span class="pokemon-name"
@@ -25,7 +21,7 @@
     <img
       *ngIf="isSelected"
       src="../../../assets/images/pokeballIcon.svg"
-      alt="Icono de Pokeball"
+      alt="Pokeball icon"
       [ngClass]="{
         'pokeball-icon': isSelected,
         disabled: !isSelected
