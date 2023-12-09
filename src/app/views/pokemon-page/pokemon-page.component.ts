@@ -65,7 +65,11 @@ export class PokemonPageComponent {
         
         this.capitalLetter = this.pokemon.name[0].toLocaleUpperCase()
         this.pokemon.name = this.capitalLetter + this.pokemon.name.slice(1)
-        this.pokemonGif = this.pokemon.sprites.front_default
+        if (this.pokemon.sprites.versions?.['generation-v']['black-white'].animated?.front_default) {
+          this.pokemonGif = this.pokemon.sprites.versions['generation-v']['black-white'].animated.front_default
+        } else {
+          this.pokemonGif = this.pokemon.sprites.front_default
+        }
         this.pokemonPs = this.pokemon.stats[0].base_stat
         this.pokemonSpAtt = this.pokemon.stats[3].base_stat
         this.pokemonAtt = this.pokemon.stats[1].base_stat
