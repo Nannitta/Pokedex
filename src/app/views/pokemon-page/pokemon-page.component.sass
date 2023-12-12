@@ -1,7 +1,18 @@
 @import '../../../styles'
 
+.mb-tb-background
+  background: $mb-tb-background
+  background-repeat: no-repeat
+  background-size: cover
+  position: fixed
+  top: 245px
+  z-index: -1
+  height: 100%
+  overflow-y: hidden
+  width: 100vw
+
 main
-  margin-top: 100px
+  padding-top: 100px
   font-family: 'Catamaran'
   .pokemonImage
     display: flex
@@ -96,17 +107,6 @@ main
     .ability-name
       align-self: flex-start
       margin-bottom: 0.5rem
-
-.mb-tb-background
-  width: 100vw
-  height: 100%
-  position: absolute
-  z-index: -1
-  top: -7px
-  clip-path: polygon(0 48%, 100% 41%, 100% 100%, 0% 100%)
-  background: #F97448
-  background-repeat: no-repeat
-  background-size: cover
 app-pokemon-page
-  display: flex
-  margin-top: 165px
+      display: flex
+      margin-top: 165px
