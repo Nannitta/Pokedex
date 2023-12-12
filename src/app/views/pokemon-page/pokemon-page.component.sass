@@ -10,6 +10,10 @@
   height: 100%
   overflow-y: hidden
   width: 100vw
+  @include laptop
+    display: none
+  @include desktop
+    display: none
 
 main
   padding-top: 100px
@@ -24,6 +28,8 @@ main
       justify-content: center
       gap: 2rem
       margin-bottom: 0.5rem
+      @include tablet
+        font-size: 2rem
 
 .container-sprite-types
   display: flex
@@ -32,6 +38,9 @@ main
   .pokemon-sprite
     width: 100px
     height: 100px
+    @include tablet
+      width: 240px
+      height: 240px
   aside
     display: flex
     flex-direction: column
@@ -39,6 +48,9 @@ main
     .pokemon-types
       width: 36px
       height: 36px
+      @include tablet
+        width: 54px
+        height: 54px
 
 .pokemon-info
   color: $white
@@ -51,6 +63,10 @@ main
   clip-path: polygon(0 8%, 100% -2%, 100% 100%, 0% 100%)
   position: fixed
   bottom: 7%
+  @include tablet
+    margin: 0 5rem 0 5rem
+    bottom: 10%
+    max-height: 445px
   button
     background-color: $black
     width: 25px
@@ -64,6 +80,9 @@ main
     align-self: flex-end
     margin-bottom: 1rem
     margin-top: 1rem
+    @include tablet
+      width: 36px
+      min-height: 36px
     .icon-arrow
       width: 20px
       height: 20px
@@ -80,6 +99,8 @@ main
       display: flex
       justify-content: center
       gap: 1rem
+      @include tablet
+        padding: 0.2rem 9rem
   .pokemon-desc
     background-color: $black
     box-shadow: $shadow-bottom
