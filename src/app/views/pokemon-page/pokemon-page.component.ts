@@ -51,9 +51,13 @@ export class PokemonPageComponent {
     this.abilities = []
   }
 
-  @HostListener('click')
-  onclick() {
-    this._router.navigate([''])
+  @HostListener('click', ['$event'])
+  onclick(event: MouseEvent) {
+    const clickButton = event.target as HTMLElement;
+   
+    if(clickButton.classList.value === 'icon-arrow') {
+      this._router.navigate(['/'])
+    }
   }
 
   ngOnInit() {   
@@ -114,9 +118,6 @@ export class PokemonPageComponent {
   }
 
   ngOnDestroy() {
-    if (this.pokemonInfoSubscription) {
-      this.pokemonInfoSubscription.unsubscribe();
-    }
     if (this.pokemonDescriptionSubscription) {
       this.pokemonDescriptionSubscription.unsubscribe();
     }
