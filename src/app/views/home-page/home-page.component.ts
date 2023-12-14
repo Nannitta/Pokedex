@@ -77,7 +77,7 @@ export class HomePageComponent {
   }
   
   onChangeInput(newValue: string) {
-    this.data.searchValue = newValue.trim()
+    this.data.searchValue = newValue.trim().toLocaleLowerCase()
     this.pokemonSearch = []
     this.position = 1       
     

@@ -1,4 +1,6 @@
 <div class="mb-tb-background"></div>
+<div class="background-orange"></div>
+<div class="background-line"></div>
 <main #pokemonInfo>
   <section class="pokemonImage">
     <h1>
@@ -17,7 +19,6 @@
       </aside>
     </div>
   </section>
-
   <section class="pokemon-info">
     <button (click)="onclick()">
       <img
@@ -34,7 +35,6 @@
         S.ATT <span>{{ pokemonSpAtt }}</span>
       </p>
     </div>
-
     <div class="stats">
       <p class="p-stats">
         ATT <span>{{ pokemonAtt }}</span>
@@ -43,7 +43,6 @@
         S.DEF <span>{{ pokemonSpDef }}</span>
       </p>
     </div>
-
     <div class="stats">
       <p class="p-stats">
         DEF <span>{{ pokemonDef }}</span>
@@ -52,9 +51,7 @@
         SPD <span>{{ pokemonSpd }}</span>
       </p>
     </div>
-
     <p class="pokemon-desc">{{ pokemonDescription }}</p>
-
     <div class="stats">
       <p class="p-stats">
         Height <span>{{ pokemonHeight }}</span>
@@ -63,11 +60,9 @@
         Weight <span>{{ pokemonWeight }}</span>
       </p>
     </div>
-
     <p class="habitat">
       Habitat <span>{{ pokemonHabitat }}</span>
     </p>
-
     <div *ngFor="let ability of abilities" class="abilities">
       <span class="ability-name">{{ ability.name }}</span>
       <p>{{ ability.description }}</p>

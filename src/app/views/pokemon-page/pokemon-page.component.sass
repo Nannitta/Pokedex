@@ -15,20 +15,77 @@
   @include desktop
     display: none
 
+.background-orange
+  @include laptop
+    background: $bg-desktop-orange
+    position: absolute
+    top: 0
+    right: 0
+    width: 1000px
+    height: 100vh
+  @include desktop
+    background: $bg-desktop-orange
+    position: absolute
+    top: 0
+    right: 0
+    width: 1340px
+    height: 100vh
+.background-line
+  @include laptop
+    background: $bg-desktop-line
+    background-repeat: no-repeat
+    width: 1000px
+    height: 100vh
+    position: absolute
+    z-index: 1
+    top: 0
+    right: 0
+  @include desktop
+    background: $bg-desktop-line
+    background-repeat: no-repeat
+    width: 1340px
+    height: 100vh
+    position: absolute
+    z-index: 1
+    top: 0
+    right: 0
+
 main
   padding-top: 100px
   font-family: 'Catamaran'
+  @include laptop
+    display: flex
+    height: 100vh
+    align-items: center
+    padding-top: 0
+    justify-content: space-between
+  @include desktop
+    display: flex
+    height: 100vh
+    align-items: center
+    padding-top: 0
+    justify-content: space-between
   .pokemonImage
     display: flex
     flex-direction: column
     align-items: center
     margin-bottom: 0.5rem
+    @include laptop
+      margin-left: 6rem
+      gap: 1.5rem
+    @include desktop
+      margin-left: 10rem
+      gap: 1.5rem
     h1
       display: flex
       justify-content: center
       gap: 2rem
       margin-bottom: 0.5rem
       @include tablet
+        font-size: 2rem
+      @include laptop
+        font-size: 2rem
+      @include desktop
         font-size: 2rem
 
 .container-sprite-types
@@ -41,6 +98,12 @@ main
     @include tablet
       width: 240px
       height: 240px
+    @include laptop
+      width: 240px
+      height: 240px
+    @include desktop
+      width: 240px
+      height: 240px
   aside
     display: flex
     flex-direction: column
@@ -49,6 +112,12 @@ main
       width: 36px
       height: 36px
       @include tablet
+        width: 54px
+        height: 54px
+      @include laptop
+        width: 54px
+        height: 54px
+      @include desktop
         width: 54px
         height: 54px
 
@@ -67,6 +136,23 @@ main
     margin: 0 5rem 0 5rem
     bottom: 10%
     max-height: 445px
+  @include laptop
+    position: relative
+    z-index: 2
+    margin-left: 30rem
+    clip-path: none
+    max-height: 550px
+    bottom: 0
+    @include scrollbar
+  @include desktop
+    position: relative
+    margin-left: 40rem
+    z-index: 2
+    clip-path: none
+    max-height: 750px
+    bottom: 0
+    padding-bottom: 0.5rem
+    @include scrollbar
   button
     background-color: $black
     width: 25px
@@ -86,6 +172,12 @@ main
     .icon-arrow
       width: 20px
       height: 20px
+    @include desktop
+      width: 44px
+      min-height: 44px
+    .icon-arrow
+      width: 25px
+      height: 25px
   .stats
     display: flex
     justify-content: space-between
@@ -101,6 +193,10 @@ main
       gap: 1rem
       @include tablet
         padding: 0.2rem 9rem
+      @include laptop
+        padding: 0.2rem 6rem
+      @include desktop
+        padding: 0.2rem 11rem
   .pokemon-desc
     background-color: $black
     box-shadow: $shadow-bottom
@@ -114,7 +210,6 @@ main
     background-color: $black
     box-shadow: $shadow-bottom
     border-radius: 2.5rem
-
     padding: 0.2rem 0.5rem
     display: flex
     justify-content: space-around
