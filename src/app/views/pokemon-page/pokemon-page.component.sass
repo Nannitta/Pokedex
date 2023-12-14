@@ -15,55 +15,38 @@
   @include desktop
     display: none
 .background-orange
+  position: absolute
+  top: 0
+  right: 0
+  height: 100vh
   @include laptop
     background: $bg-desktop-orange
-    position: absolute
-    top: 0
-    right: 0
     width: 1000px
-    height: 100vh
   @include desktop
     background: $bg-desktop-orange
-    position: absolute
-    top: 0
-    right: 0
     width: 1340px
-    height: 100vh
 .background-line
+  height: 100vh
+  position: absolute
+  z-index: 1
+  top: 0
+  right: 0
   @include laptop
     background: $bg-desktop-line
     background-repeat: no-repeat
     width: 1000px
-    height: 100vh
-    position: absolute
-    z-index: 1
-    top: 0
-    right: 0
   @include desktop
     background: $bg-desktop-line
     background-repeat: no-repeat
     width: 1340px
-    height: 100vh
-    position: absolute
-    z-index: 1
-    top: 0
-    right: 0
 
 main
   padding-top: 100px
   font-family: 'Catamaran'
   @include laptop
-    display: flex
-    height: 100vh
-    align-items: center
-    padding-top: 0
-    justify-content: space-between
+    @include common-main-styles
   @include desktop
-    display: flex
-    height: 100vh
-    align-items: center
-    padding-top: 0
-    justify-content: space-between
+    @include common-main-styles
   .pokemonImage
     display: flex
     flex-direction: column
@@ -94,14 +77,11 @@ main
         width: 100px
         height: 100px
         @include tablet
-          width: 240px
-          height: 240px
+          @include set-size(240px, 240px)
         @include laptop
-          width: 240px
-          height: 240px
+          @include set-size(240px, 240px)
         @include desktop
-          width: 240px
-          height: 240px
+          @include set-size(240px, 240px)
       aside
         display: flex
         flex-direction: column
@@ -110,14 +90,11 @@ main
           width: 36px
           height: 36px
           @include tablet
-            width: 54px
-            height: 54px
+            @include set-size(54px, 54px)
           @include laptop
-            width: 54px
-            height: 54px
+            @include set-size(54px, 54px)
           @include desktop
-            width: 54px
-            height: 54px
+            @include set-size(54px, 54px)
   .pokemon-info
     color: $white
     display: flex
@@ -167,14 +144,11 @@ main
         width: 36px
         min-height: 36px
       .icon-arrow
-        width: 20px
-        height: 20px
+        @include set-size(20px, 20px)
       @include desktop
-        width: 44px
-        min-height: 44px
+        @include set-size(44px, 44px)
       .icon-arrow
-        width: 25px
-        height: 25px
+        @include set-size(25px, 25px)
     .stats
       display: flex
       justify-content: space-between

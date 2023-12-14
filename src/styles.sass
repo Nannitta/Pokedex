@@ -36,6 +36,21 @@ $mb-tb-background: url(./assets/images/bg-mobile.webp)
   &::-webkit-scrollbar
     display: none
 
+@mixin common-main-styles
+  display: flex
+  height: 100vh
+  align-items: center
+  padding-top: 0
+  justify-content: space-between
+
+@mixin set-size($width, $height)
+  width: $width
+  height: $height
+
+@mixin set-margins-and-gap($left, $gap)
+  margin-left: $left
+  gap: $gap
+
 *
   margin: 0
   padding: 0
