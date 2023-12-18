@@ -30,6 +30,7 @@ export class PokemonPageComponent {
   pokemonWeight: number
   pokemonHabitat: string
   abilities: PokemonAbility[]
+  pokemonName: string
 
   constructor (private pokeApi: PokeApiService, private _router: Router, private route: ActivatedRoute) {
     this.route.url.subscribe(segments => {
@@ -49,6 +50,7 @@ export class PokemonPageComponent {
     this.pokemonWeight = 0
     this.pokemonHabitat = ''
     this.abilities = []
+    this.pokemonName = ''
   }
 
   @HostListener('click', ['$event'])
@@ -85,7 +87,13 @@ export class PokemonPageComponent {
         this.pokemonSpd = this.pokemon.stats[5].base_stat                      
         this.pokemonHeight = this.pokemon.height
         this.pokemonWeight = this.pokemon.weight
-
+        this.pokemonName = this.pokemon.name.toLowerCase().replaceAll('-', '')
+        const pokemonSound: HTMLMediaElement | null = document.querySelector('#pokemonSound')       
+        if(pokemonSound) {
+          pokemonSound.src = `https://play.pokemonshowdown.com/audio/cries/${this.pokemonName}.ogg`
+          pokemonSound.volume = 0.05
+          pokemonSound.play()
+        }
         this.pokemon.abilities.forEach((ability: PokemonAbilityContainer) => {
           this.pokemonAbilityDescription = this.pokeApi.getAbilityDescription(ability.ability.url).subscribe(
             data => {            

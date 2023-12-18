@@ -1,11 +1,12 @@
 <div class="mb-tb-background"></div>
 <div class="background-orange"></div>
 <div class="background-line"></div>
+<audio preload="auto" id="pokemonSound"></audio>
 <main #pokemonInfo>
   <section class="pokemonImage">
     <h1>
       No. {{ pokemon.id }}
-      <span>{{ pokemon.name }}</span>
+      <span>{{ pokemon.name.split("-")[0] }}</span>
     </h1>
     <div class="container-sprite-types">
       <img src="{{ pokemonGif }}" alt="Pokemon sprite" class="pokemon-sprite" />
