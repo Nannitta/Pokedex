@@ -15,6 +15,7 @@ export class HomePageComponent {
   pokemonSearch: PokemonInfo[]
   pokemonGif: string
   isSearch: boolean
+  pressButton: any
 
   data = {
     searchValue: ''
@@ -33,9 +34,17 @@ export class HomePageComponent {
   pressKeyDown (event: KeyboardEvent) {
     if(event.key === 'ArrowDown') {
       this.toggleImage('down')
+      const soundPressButton: HTMLMediaElement = new Audio()
+      soundPressButton.src = '../../assets/sounds/buttonSound.mp3'
+      soundPressButton.volume = 0.05
+      soundPressButton.play()
     }
     if(event.key === 'ArrowUp') {
       this.toggleImage('up')
+      const soundPressButton: HTMLMediaElement = new Audio()
+      soundPressButton.src = '../../assets/sounds/buttonSound.mp3'
+      soundPressButton.volume = 0.05
+      soundPressButton.play()
     }
     this.updatePokemonGift(this.pokemonSearch)
   }
@@ -61,12 +70,20 @@ export class HomePageComponent {
     if (direction === 'up') {
       if (this.position > 1) {
         this.position = this.position - 1
+        const soundPressButton: HTMLMediaElement = new Audio()
+        soundPressButton.src = '../../assets/sounds/buttonSound.mp3'
+        soundPressButton.volume = 0.05
+        soundPressButton.play()
       }
       if (this.position === 1) {
         this.position = this.position = 1
       }
     } else if (direction === 'down' && this.position < this.pokemonLength) {
-      this.position = this.position + 1 
+      this.position = this.position + 1
+      const soundPressButton: HTMLMediaElement = new Audio()
+      soundPressButton.src = '../../assets/sounds/buttonSound.mp3'
+      soundPressButton.volume = 0.05
+      soundPressButton.play() 
     }
     
     if (this.position < 10) {
@@ -108,7 +125,7 @@ export class HomePageComponent {
       this.updatePokemonGift(this.pokemonSearch);
     }
   }
-  
+
   ngAfterViewChecked() {        
     if (this.allPokemon.length > 0 && !this.isSearch) {     
       this.updatePokemonGift(this.allPokemon);
