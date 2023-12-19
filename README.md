@@ -18,10 +18,7 @@ En ella podrás encontrar todos los pokémon de la primera generación y filtrar
 ## Sobre el proyecto
 
 * Diseñada con Figma para mejorar así la planificación de la App y poder comprender los datos necesarios y la manera más efectiva de representarlos, pudiendo mantener una coherencia visual y funcional en todo el desarrollo.
-
-</br>
-
-<iframe width="800" height="475" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2Fd3Oh1efAhcHs2JiurehbVW%2FUntitled%3Ftype%3Ddesign%26node-id%3D0%253A1%26mode%3Ddesign%26t%3D1l5R1a1YXEQkcWoA-1" allowfullscreen></iframe>
+[Diseño](https://www.figma.com/file/d3Oh1efAhcHs2JiurehbVW/Pok%C3%A9dex?type=design&node-id=0%3A1&mode=design&t=CU0J7lTUODNgbU2V-1)
 
 </br>
 
